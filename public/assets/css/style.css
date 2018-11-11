@@ -1,0 +1,58 @@
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+.title, h2, h1 {
+  font-family: 'Passion One', sans-serif;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+a {
+  color: #689f38;
+}
+
+#sidebar-logo {
+  margin-bottom: 75px;
+}
+
+.parallax-container {
+  height: 300px;
+}
+
+/* from https://codepen.io/Paco_Cervantes/pen/ZLxKpj?editors=0110 */
+
+.middle-indicator{
+   position:absolute;
+   top:50%;
+   }
+  .middle-indicator-text{
+   font-size: 4.2rem;
+  }
+  a.middle-indicator-text{
+    color: #689f38 !important;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  }
+
+.content-indicator{
+    width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px; 
+  }
+    .indicators{
+  	visibility: hidden;
+  }
+
+/* */
+
+
+.email {
+  padding-top: 6px;
+  max-height: 80%;
+}
+
+.carousel {
+  height: 500px;
+}
