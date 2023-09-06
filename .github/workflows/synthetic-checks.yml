@@ -1,0 +1,21 @@
+name: Synthetic checks
+run-name: ${{github.run_id}}-${{ github.sha }}
+on:
+  schedule:
+    - cron: '0 0 * * *' # once a day
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: setup PNPM
+        uses: pnpm/action-setup@v2
+      - name: Install packages
+        run: pnpm install
+      - name: Run synthetic checks
+        run: pnpm synthetic-checks

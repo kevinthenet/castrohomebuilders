@@ -1,0 +1,23 @@
+name: Continuous Integration (CI)
+run-name: ${{ github.sha }}
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  launch-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: setup PNPM
+        uses: pnpm/action-setup@v2
+      - name: Install packages
+        run: pnpm install
+      - name: Run Astro checks
+        run: pnpm check
+      - name: Run Linter
+        run: pnpm lint:check
