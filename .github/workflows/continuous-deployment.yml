@@ -43,6 +43,7 @@ jobs:
           node-version: 20
           path: .
           package-manager: pnpm
+          pnpm-version: 8.7.4
   deploy:
     needs:
       - on-success
