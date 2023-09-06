@@ -42,6 +42,7 @@ jobs:
         with:
           node-version: 20
           path: .
+          package-manager: pnpm
   deploy:
     needs:
       - on-success
