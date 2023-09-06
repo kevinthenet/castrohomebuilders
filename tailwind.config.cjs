@@ -11,6 +11,7 @@ module.exports = {
 			transparent: 'transparent',
 			white: '#ffffff',
 			primary: colors.emerald,
+			secondary: colors.rose,
 		},
 		fontFamily: {
 			sans: ['Inter', 'sans-serif'],
@@ -26,6 +27,18 @@ module.exports = {
 			'4xl': ['2.25rem', '2.75rem'],
 			'5xl': ['3rem', '3.5rem'],
 			'6xl': ['3.75rem', '4.25rem'],
+		},
+		animation: {
+			fade: 'fadeOut 5s ease-out',
+		},
+
+		keyframes: {
+			fadeOut: {
+				'0%': { opacity: 1 },
+				'50%': { opacity: 1 },
+				'75%': { opacity: 1 },
+				'100%': { opacity: 0 },
+			},
 		},
 	},
 	plugins: [],

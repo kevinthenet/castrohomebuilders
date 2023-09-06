@@ -35,6 +35,9 @@ dependencies:
   astro-robots-txt:
     specifier: ^0.5.0
     version: 0.5.0
+  canvas-confetti:
+    specifier: ^1.6.0
+    version: 1.6.0
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -1429,6 +1432,10 @@ packages:
 
   /caniuse-lite@1.0.30001527:
     resolution: {integrity: sha512-YkJi7RwPgWtXVSgK4lG9AHH57nSzvvOp9MesgXmw4Q7n0C3H04L0foHqfxcmSAm5AcWb8dW9AYj2tR7/5GnddQ==}
+    dev: false
+
+  /canvas-confetti@1.6.0:
+    resolution: {integrity: sha512-ej+w/m8Jzpv9Z7W7uJZer14Ke8P2ogsjg4ZMGIuq4iqUOqY2Jq8BNW42iGmNfRwREaaEfFIczLuZZiEVSYNHAA==}
     dev: false
 
   /ccount@2.0.1:
