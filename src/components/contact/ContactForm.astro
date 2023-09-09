@@ -10,14 +10,14 @@
           estimates, so please feel free to reach out for any project, big or small!
         </p>
       </div>
-      <form action="/submit" method="POST" class="mt-3 flex flex-col gap-y-6" id="contact-form">
+      <form action="#" method="POST" class="mt-3 flex flex-col gap-y-6" id="contact-form">
         <!-- Full name input -->
         <div>
-          <label for="name" class="sr-only">Full name</label>
+          <label for="full-name" class="sr-only">Full name</label>
           <input
             type="text"
-            name="name"
-            id="name"
+            name="full-name"
+            id="full-name"
             autocomplete="name"
             class="block w-full appearance-none rounded-md border-0 bg-primary-50 px-4 py-4 text-base ring-1 ring-primary-900/40 transition placeholder:text-primary-950/60 hover:ring-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-primary-950 dark:ring-primary-200/40 dark:placeholder:text-primary-200/60 dark:hover:ring-primary-400 dark:focus:ring-primary-400"
             placeholder="Full name"
@@ -68,7 +68,7 @@
     spread: 90,
     disableForReducedMotion: true,
   };
-  const formFields = ['name', 'email', 'message'];
+  const formFields = ['full-name', 'email', 'message'];
 
   const validateForm = (): boolean => {
     // check for empty values
@@ -111,29 +111,17 @@
     });
   };
 
-  submitButton?.addEventListener('click', async (e: Event) => {
+  submitButton?.addEventListener('click', (e: Event) => {
     e.preventDefault();
     // if a toast is currently being shown, reset it
     hideToasts();
+    const success = validateForm();
 
-    const validFormInput = validateForm();
-
-    if (validFormInput) {
-      const formData = new FormData(document.getElementById('contact-form') as HTMLFormElement);
-
-      const formDataObj = Object.fromEntries(formData.entries());
-
-      const response = await fetch('/submit', {
-        method: 'POST',
-        body: JSON.stringify(formDataObj),
-      });
-
-      if (response.status === 200) {
-        confetti(confettiOptions);
-        resetForm();
-      }
+    if (success) {
+      confetti(confettiOptions);
+      resetForm();
     }
 
-    showToast(validFormInput);
+    showToast(success);
   });
 </script>
