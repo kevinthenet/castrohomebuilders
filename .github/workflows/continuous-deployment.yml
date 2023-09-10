@@ -1,4 +1,4 @@
-name: Continuous Deploy (CD) to GitHub Pages
+name: Continuous Deploy (CD)
 run-name: ${{ github.sha }}
 on:
   # Trigger the workflow every time the CI workflow completes
@@ -13,7 +13,7 @@ on:
   # Allow this run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
+# Allow this job to clone the repo and create a deployment
 permissions:
   contents: read
   pages: write

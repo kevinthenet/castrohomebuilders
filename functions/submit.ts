@@ -11,7 +11,7 @@ const contactFormTemplate = process.env.CONTACT_FORM_TEMPLATE_ID || '';
 
 sgMail.setApiKey(apiKey);
 
-export async function POST({ request }: APIContext) {
+export async function onRequestPost({ request }: APIContext) {
   let success = true;
   let errorMsg = {};
 
@@ -32,6 +32,8 @@ export async function POST({ request }: APIContext) {
     };
 
     await sgMail.send(msg);
+
+    console.log('success');
   } catch (error) {
     console.error(error);
     errorMsg = (error as Error).message;
