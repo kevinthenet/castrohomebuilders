@@ -1,17 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import Team1Image from '@assets/team-1.webp';
-import Team2Image from '@assets/team-2.webp';
-
 const team = [
   {
     name: 'Victor Castro',
-    image: Team1Image,
+    image:
+      'https://res.cloudinary.com/castrokev-in/image/upload/v1694376698/castrohomebuilders/team-1.jpg',
     job: 'General Contractor, Owner',
   },
   {
     name: 'Kevin Castro',
-    image: Team2Image,
+    image:
+      'https://res.cloudinary.com/castrokev-in/image/upload/v1694376305/castrohomebuilders/team-2.jpg',
     job: 'Web Developer',
   },
 ];
@@ -26,7 +24,7 @@ const team = [
           team.map((item) => (
             <li class="rounded-3xl border border-primary-900/10 px-6 py-8 dark:border-primary-300/10">
               <div class="space-y-6">
-                <Image class="mx-auto h-auto w-16 rounded-full" src={item.image} alt={item.name} />
+                <img class="mx-auto h-auto w-16 rounded-full" src={item.image} alt={item.name} />
                 <div class="text-center">
                   <h3 class="text-lg font-medium">{item.name}</h3>
                   <p class="text-base text-primary-950/70 dark:text-primary-200/70">{item.job}</p>
