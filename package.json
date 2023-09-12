@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "wrangler pages dev ./dist",
+    "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
     "lint:check": "prettier --check --config ./.prettierrc ./src",
