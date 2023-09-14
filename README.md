@@ -6,7 +6,7 @@ Site is built with Astro based on the [Stone](https://astro.build/themes/details
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+Inside of this Astro project, you'll see the following folders and files:
 
 ```
 /

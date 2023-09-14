@@ -32,7 +32,11 @@ module.exports = {
 		animation: {
 			fade: 'fadeOut 5s ease-out',
 		},
-
+		extend: {
+			height: {
+				'half-screen': '50vh',
+			}
+		},
 		keyframes: {
 			fadeOut: {
 				'0%': { opacity: 1 },

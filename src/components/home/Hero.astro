@@ -1,7 +1,11 @@
-<section class="py-16 sm:py-20">
+---
+import Slideshow from './Slideshow.astro';
+---
+
+<section class="py-8 sm:py-10">
   <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="flex flex-col gap-16">
-      <div class="flex flex-col items-start gap-8 sm:gap-10">
+    <div class="flex flex-col gap-8 lg:gap-16">
+      <div class="flex flex-col items-start gap-4 lg:gap-8">
         <div class="flex max-w-2xl flex-col items-start gap-4 sm:gap-6">
           <h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
             Your vision, our expertise
@@ -25,13 +29,7 @@
           </a>
         </div>
       </div>
-      <img
-        class="h-auto w-full rounded-3xl"
-        width="1280"
-        height="640"
-        src={'https://res.cloudinary.com/castrokev-in/image/upload/v1541880614/castrohomebuilders/parallax/architect-architecture-blueprint-271667.jpg'}
-        alt="Hero picture"
-      />
+      <Slideshow />
     </div>
   </div>
 </section>
