@@ -12,7 +12,8 @@
     "astro": "astro",
     "lint:check": "prettier --check --config ./.prettierrc ./src",
     "lint:fix": "prettier --write --config ./.prettierrc ./src",
-    "synthetic-checks": ""
+    "synthetic:check": "playwright test",
+    "synthetic:report": "playwright show-report"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.13.0",
@@ -35,6 +36,8 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.7.3",
+    "@playwright/test": "^1.37.1",
     "wrangler": "^3.7.0"
   }
 }
