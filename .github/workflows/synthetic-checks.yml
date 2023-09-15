@@ -45,7 +45,7 @@ jobs:
         id: playwright-cache
         with:
           path: ${{ matrix.cache_dir }}
-          key: ${{ runner.os }}-${{ matrix.project }}-pw-${{ hashFiles('.github/.playwright-version') }}
+          key: ${{ runner.os }}-${{ matrix.project }}-pw-${{ hashFiles('**/.playwright-version') }}
 
       - name: Install dependencies
         if: steps.pnpm-cache.outputs.cache-hit != 'true'
