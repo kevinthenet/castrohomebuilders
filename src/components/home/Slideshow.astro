@@ -39,9 +39,9 @@ type SearchResult = {
 };
 
 cloudinary.config({
-  cloud_name: 'castrokev-in',
-  api_key: '321923341525761',
-  api_secret: 'kSStcgcezG3zL8hm_zwRb8zhW6U',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
 });
 
