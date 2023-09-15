@@ -30,15 +30,26 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Setup PNPM
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
-      - name: Cache PNPM dependencies
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Cache pnpm dependencies
         uses: actions/cache@v3
         id: pnpm-cache
         with:
-          path: node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('(**/pnpm-lock.yaml') }}
 
       - name: Cache playwright binaries
         uses: actions/cache@v3
@@ -47,7 +58,7 @@ jobs:
           path: ${{ matrix.cache_dir }}
           key: ${{ runner.os }}-${{ matrix.project }}-pw-${{ hashFiles('**/.playwright-version') }}
 
-      - name: Install packages
+      - name: Install dependencies
         if: steps.pnpm-cache.outputs.cache-hit != 'true'
         run: pnpm install && pnpm exec playwright --version >> .github/.playwright-version
 
