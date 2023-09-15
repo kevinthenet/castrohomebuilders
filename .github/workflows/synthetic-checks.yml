@@ -20,13 +20,13 @@ jobs:
           - project: firefox
             os: ubuntu-latest
             cache_dir: ~/.cache/ms-playwright
-          - project: mobile-chrome
+          - project: Mobile Chrome
             os: ubuntu-latest
             cache_dir: ~/.cache/ms-playwright
           - project: webkit
             os: macos-12
             cache_dir: ~/Library/Caches/ms-playwright
-          - projcect: mobile-safari
+          - project: Mobile Safari
             os: macos-12
             cache_dir: ~/Library/Caches/ms-playwright
     timeout-minutes: 20
