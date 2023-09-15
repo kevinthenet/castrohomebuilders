@@ -2,6 +2,14 @@ name: Continuous Integration (CI)
 run-name: ${{ github.sha }}
 on:
   push:
+    paths:
+      - src/**
+      - public/**
+      - package.json
+      - pnpm-lock.yaml
+      - astro.config.mjs
+      - tailwind.config.cjs
+      - tsconfig.json
   workflow_dispatch:
 
 permissions:
