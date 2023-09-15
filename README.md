@@ -1,5 +1,9 @@
 # [Castro Home Builders](https://castrohomebuilders.com)
 
+[![Continuous Deploy (CD)](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/continuous-deployment.yml/badge.svg)](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/continuous-deployment.yml)
+[![Continuous Integration (CI)](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/continuous-integration.yml)
+[![Synthetic checks](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/synthetic-checks.yml/badge.svg)](https://github.com/kevinthenet/castrohomebuilders/actions/workflows/synthetic-checks.yml)
+
 Static site for Castro Home Builders, a general contracting construction company based out of Redwood City, CA.
 
 Site is built with Astro based on the [Stone](https://astro.build/themes/details/stone/) theme and hosted on GitHub Pages.
