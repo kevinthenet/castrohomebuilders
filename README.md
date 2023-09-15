@@ -47,3 +47,21 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm check`      | Compiles typescript and runs `astro check`   |
 | `pnpm astro ...`  | Run CLI commands like `astro add`            |
 | `pnpm lint:check` | Run prettier lint checks locally             |
+
+## Local development
+
+In order to get things working locally, you will need to create the following file:
+
+> .env
+>
+> ```bash
+> export CLOUDINARY_CLOUD_NAME='<cloud_name>'
+> export CLOUDINARY_API_KEY='<api_key>'
+> export CLOUDINARY_API_SECRET='<api_secret>'
+> ```
+
+Then, before doing `pnpm start` run:
+
+```
+source .env
+```
