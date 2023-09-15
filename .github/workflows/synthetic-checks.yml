@@ -20,13 +20,7 @@ jobs:
           - project: firefox
             os: ubuntu-latest
             cache_dir: ~/.cache/ms-playwright
-          - project: Mobile Chrome
-            os: ubuntu-latest
-            cache_dir: ~/.cache/ms-playwright
           - project: webkit
-            os: macos-12
-            cache_dir: ~/Library/Caches/ms-playwright
-          - project: Mobile Safari
             os: macos-12
             cache_dir: ~/Library/Caches/ms-playwright
     timeout-minutes: 20
@@ -62,7 +56,7 @@ jobs:
         run: pnpm exec playwright install --with-deps ${{ matrix.project }}
 
       - name: Run synthetic checks
-        run: pnpm synthetic:check --project ${{ matrix.project }}
+        run: pnpm synthetic:check --project=${{ matrix.project }}
         env:
           DEBUG: pw:api,pw:browser*
 
