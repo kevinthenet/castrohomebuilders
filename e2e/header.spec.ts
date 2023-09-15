@@ -19,20 +19,37 @@ test('should have a toggle theme button', async ({ page }) => {
   await expect(toggleThemeButton).toBeVisible();
 });
 
+test('should have a clickable menu toggle', async ({ page }) => {
+  const header = page.locator('header');
+
+  const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
+
+  await expect(menuToggle).toBeVisible();
+  await menuToggle.click({ trial: true });
+});
+
 test('should have some description text', async ({ page }) => {
   const header = page.locator('header');
+
+  const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
+  // expand header section
+  await menuToggle.click();
 
   await expect(
     header.getByRole('paragraph').filter({ hasText: 'one home at a time' })
   ).toBeVisible();
 });
 
-test('should have a clickable license number, opening a new tab to the CSLB government site', async ({
+test('should have a clickable license number, which opens a new tab to the CSLB government site when clicked', async ({
   page,
 }) => {
   const header = page.locator('header');
 
-  const licenseNumber = header.getByLabel('License');
+  const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
+  // expand header section
+  await menuToggle.click();
+
+  const licenseNumber = header.getByRole('link').filter({ hasText: 'License' });
   await expect(licenseNumber).toBeVisible();
 
   const newTabPromise = page.waitForEvent('popup');
@@ -48,7 +65,11 @@ for (const link of internalLinks) {
   test(`should have an internal company link: ${link}`, async ({ page }) => {
     const header = page.locator('header');
 
-    const internalLink = header.getByRole('link', { name: link });
+    const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
+    // expand header section
+    await menuToggle.click();
+
+    const internalLink = header.getByRole('link', { name: link, exact: true });
     await expect(internalLink).toBeVisible();
 
     await internalLink.click();

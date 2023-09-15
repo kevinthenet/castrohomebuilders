@@ -31,7 +31,19 @@ test('has button: "Go back home" which navigates back to homepage', async ({ pag
 });
 
 test('navigating to an unknown page will render the 404 page', async ({ page }) => {
-  const randomPage = crypto.randomUUID();
+  const generateRandomString = (myLength) => {
+    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+    const randomArray = Array.from(
+      { length: myLength },
+      (v, k) => chars[Math.floor(Math.random() * chars.length)]
+    );
+
+    const randomString = randomArray.join('');
+    return randomString;
+  };
+
+  const randomPage = generateRandomString(12);
+  console.log(`Navigating to: /${randomPage}`);
   await page.goto(`/${randomPage}`);
   await expect(page).toHaveTitle(/Not found/);
 });
