@@ -3,27 +3,72 @@ run-name: ${{github.run_id}}-${{ github.sha }}
 on:
   schedule:
     - cron: '0 0 * * *' # once a day
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   synthetic-check:
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: chromium
+            os: ubuntu-latest
+            cache_dir: ~/.cache/ms-playwright
+          - project: firefox
+            os: ubuntu-latest
+            cache_dir: ~/.cache/ms-playwright
+          - project: mobile-chrome
+            os: ubuntu-latest
+            cache_dir: ~/.cache/ms-playwright
+          - project: webkit
+            os: macos-12
+            cache_dir: ~/Library/Caches/ms-playwright
+          - projcect: mobile-safari
+            os: macos-12
+            cache_dir: ~/Library/Caches/ms-playwright
+    timeout-minutes: 20
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.project }} E2E tests
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-      - name: setup PNPM
+
+      - name: Setup PNPM
         uses: pnpm/action-setup@v2
-      - name: Install packages
-        run: pnpm install
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-      - name: Run synthetic checks
-        run: pnpm synthetic:check
-      - uses: actions/upload-artifact@v3
+
+      - name: Cache PNPM dependencies
+        uses: actions/cache@v3
+        id: pnpm-cache
         with:
-          name: playwright-report
+          path: node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ${{ matrix.cache_dir }}
+          key: ${{ runner.os }}-${{ matrix.project }}-pw-${{ hashFiles('**/.playwright-version') }}
+
+      - name: Install packages
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm install && pnpm exec playwright --version >> .github/.playwright-version
+
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps ${{ matrix.project }}
+
+      - name: Run synthetic checks
+        run: pnpm synthetic:check --project ${{ matrix.project }}
+        env:
+          DEBUG: pw:api,pw:browser*
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: playwright-report-${{ matrix.project }}
           path: playwright-report/
           retention-days: 30
