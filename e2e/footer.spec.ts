@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from './base-test';
 
 test.beforeEach(async ({ page }) => {
   const availablePages = ['/', '/about', '/contact', '/privacy', '/404'];
@@ -55,7 +55,7 @@ test('should have a clickable image, opening a new tab to the BBB accreditation 
 
 const socialLinks = ['Yelp', 'Houzz', 'Facebook'];
 for (const link of socialLinks) {
-  test(`should have an external link to: ${link}`, async ({ page }) => {
+  test(`should have an external link to: ${link}`, async ({ page, baseURL }) => {
     const footer = page.locator('footer');
 
     const socialLink = footer.getByRole('link', { name: link });
@@ -66,19 +66,19 @@ for (const link of socialLinks) {
     const newTab = await newTabPromise;
 
     await newTab.waitForLoadState();
-    await expect(newTab).not.toHaveURL(/castrohomebuilders/);
+    expect(newTab.url()).not.toContain(baseURL!);
   });
 }
 
 const internalLinks = ['Home', 'About', 'Contact', 'Privacy'];
 for (const link of internalLinks) {
-  test(`should have an internal company link: ${link}`, async ({ page }) => {
+  test(`should have an internal company link: ${link}`, async ({ page, baseURL }) => {
     const footer = page.locator('footer');
 
     const internalLink = footer.getByRole('link', { name: link });
     await expect(internalLink).toBeVisible();
 
     await internalLink.click();
-    await expect(page).toHaveURL(/castrohomebuilders/);
+    expect(page.url()).toContain(baseURL!);
   });
 }

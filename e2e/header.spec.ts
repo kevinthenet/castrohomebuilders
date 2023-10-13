@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from './base-test';
 
 test.beforeEach(async ({ page }) => {
   const availablePages = ['/', '/about', '/contact', '/privacy', '/404'];
@@ -62,7 +62,7 @@ test('should have a clickable license number, which opens a new tab to the CSLB 
 
 const internalLinks = ['Home', 'About', 'Contact'];
 for (const link of internalLinks) {
-  test(`should have an internal company link: ${link}`, async ({ page }) => {
+  test(`should have an internal company link: ${link}`, async ({ page, baseURL }) => {
     const header = page.locator('header');
 
     const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
@@ -73,6 +73,6 @@ for (const link of internalLinks) {
     await expect(internalLink).toBeVisible();
 
     await internalLink.click();
-    await expect(page).toHaveURL(/castrohomebuilders/);
+    expect(page.url()).toContain(baseURL!);
   });
 }
