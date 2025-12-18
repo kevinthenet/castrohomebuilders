@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@assets/*": [
-        "public/assets/*"
-      ]
-    }
-  }
+      "@assets/*": ["public/assets/*"],
+    },
+  },
 }

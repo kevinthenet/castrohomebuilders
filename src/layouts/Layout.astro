@@ -40,8 +40,8 @@ const { description, title } = Astro.props;
     </style>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1WFXNTG8G"></script>
-    <script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-K1WFXNTG8G"></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -51,7 +51,7 @@ const { description, title } = Astro.props;
       gtag('config', 'G-K1WFXNTG8G');
     </script>
 
-    <script>
+    <script is:inline>
       import Alpine from 'alpinejs';
       import collapse from '@alpinejs/collapse';
 
