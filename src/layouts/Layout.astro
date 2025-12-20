@@ -14,7 +14,7 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.isDark }">
+<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.dark }">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -22,8 +22,10 @@ const { description, title } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
-    ></script>
+    <script
+      is:inline
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <title>{title}</title>
     <ViewTransitions />
   </head>
@@ -56,29 +58,25 @@ const { description, title } = Astro.props;
     <script>
       import Alpine from 'alpinejs';
 
+      // Initialize theme from localStorage or system preference
+      const initialTheme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme') === 'dark';
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return true;
+        }
+        return false;
+      })();
+
+      // Reactive object store with toggle method
       Alpine.store('theme', {
-        init() {
-          this.isDark = (() => {
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-              return localStorage.getItem('theme') === 'dark';
-            }
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              return true;
-            }
-            return false;
-          })();
-        },
-
-        isDark: false,
-
+        dark: initialTheme,
         toggle() {
-          this.isDark = !this.isDark;
-          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+          this.dark = !this.dark;
+          localStorage.setItem('theme', this.dark ? 'dark' : 'light');
         },
       });
-
-      window.Alpine = Alpine;
-      Alpine.start();
     </script>
   </body>
 </html>

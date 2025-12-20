@@ -32,7 +32,7 @@ const links = [
         <span class="sr-only">Castro Home Builders</span>
         <img
           class="h-24 w-auto"
-          :src="$store.theme.isDark ? 'https://res.cloudinary.com/kevin-castro/image/upload/v1694375873/castrohomebuilders/chb-logo-inverted.png' : 'https://res.cloudinary.com/kevin-castro/image/upload/v1694375872/castrohomebuilders/chb-logo.png'"
+          :src="$store.theme.dark ? 'https://res.cloudinary.com/kevin-castro/image/upload/v1694375873/castrohomebuilders/chb-logo-inverted.png' : 'https://res.cloudinary.com/kevin-castro/image/upload/v1694375872/castrohomebuilders/chb-logo.png'"
           alt="Castro Home Builders Logo"
         />
       </a>
@@ -51,7 +51,7 @@ const links = [
         <svg
           x-cloak
           class="h-6 w-6"
-          :class="{ 'hidden': !($store.theme.isDark) }"
+          :class="{ 'hidden': !($store.theme.dark) }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -64,7 +64,7 @@ const links = [
         <svg
           x-cloak
           class="h-6 w-6"
-          :class="{ 'hidden': $store.theme.isDark }"
+          :class="{ 'hidden': $store.theme.dark }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
