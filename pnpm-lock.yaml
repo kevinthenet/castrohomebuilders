@@ -8,6 +8,9 @@ dependencies:
   '@alpinejs/collapse':
     specifier: ^3.13.0
     version: 3.15.2
+  '@astrojs/alpinejs':
+    specifier: ^0.4.9
+    version: 0.4.9(@types/alpinejs@3.13.11)(alpinejs@3.15.3)
   '@astrojs/check':
     specifier: ^0.2.0
     version: 0.2.1(prettier-plugin-astro@0.12.3)(prettier@3.7.4)(typescript@5.9.3)
@@ -21,11 +24,11 @@ dependencies:
     specifier: ^5.0.8
     version: 5.2.8
   '@types/alpinejs':
-    specifier: ^3.7.2
+    specifier: ^3.13.11
     version: 3.13.11
   alpinejs:
-    specifier: ^3.13.0
-    version: 3.15.2
+    specifier: ^3.15.3
+    version: 3.15.3
   astro:
     specifier: ^3.0.8
     version: 3.6.5(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.9.3)
@@ -83,6 +86,16 @@ packages:
 
   /@alpinejs/collapse@3.15.2:
     resolution: {integrity: sha512-wQZ5vwz3dUuisssIcYgJGxkLl2EnkUmsHQxDvqGEEC3+3m662bbZXGlT3NFiTj7AqrbqHRgtwOdKi2umVFGimQ==}
+    dev: false
+
+  /@astrojs/alpinejs@0.4.9(@types/alpinejs@3.13.11)(alpinejs@3.15.3):
+    resolution: {integrity: sha512-fvKBAugn7yIngEKfdk6vL3ZlcVKtQvFXCZznG28OikGanKN5W+PkRPIdKaW/0gThRU2FyCemgzyHgyFjsH8dTA==}
+    peerDependencies:
+      '@types/alpinejs': ^3.0.0
+      alpinejs: ^3.0.0
+    dependencies:
+      '@types/alpinejs': 3.13.11
+      alpinejs: 3.15.3
     dev: false
 
   /@astrojs/check@0.2.1(prettier-plugin-astro@0.12.3)(prettier@3.7.4)(typescript@5.9.3):
@@ -1652,8 +1665,8 @@ packages:
       require-from-string: 2.0.2
     dev: false
 
-  /alpinejs@3.15.2:
-    resolution: {integrity: sha512-2kYF2aG+DTFkE6p0rHG5XmN4VEb6sO9b02aOdU4+i8QN6rL0DbRZQiypDE1gBcGO65yDcqMz5KKYUYgMUxgNkw==}
+  /alpinejs@3.15.3:
+    resolution: {integrity: sha512-fSI6F5213FdpMC4IWaup92KhuH3jBX0VVqajRJ6cOTCy1cL6888KyXdGO+seAAkn+g6fnrxBqQEx6gRpQ5EZoQ==}
     dependencies:
       '@vue/reactivity': 3.1.5
     dev: false

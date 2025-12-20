@@ -105,12 +105,25 @@ const serviceCategories = [
                     </div>
                   </button>
                 </dt>
-                <dd class="pb-6 pr-6" id={category.id} x-cloak x-show="isOpen" x-collapse>
-                  <ul class="list-none text-center text-base text-primary-950/70 dark:text-primary-200/70">
-                    {category.services.map((service) => (
-                      <li>{service}</li>
-                    ))}
-                  </ul>
+                <dd
+                  class="overflow-hidden"
+                  id={category.id}
+                  x-cloak
+                  x-show="isOpen"
+                  x-transition:enter="transition ease-out duration-250"
+                  x-transition:enter-start="opacity-0 max-h-0"
+                  x-transition:enter-end="opacity-100 max-h-96"
+                  x-transition:leave="transition ease-in duration-250"
+                  x-transition:leave-start="opacity-100 max-h-96"
+                  x-transition:leave-end="opacity-0 max-h-0"
+                >
+                  <div class="pb-6 pr-6">
+                    <ul class="list-none text-center text-base text-primary-950/70 dark:text-primary-200/70">
+                      {category.services.map((service) => (
+                        <li>{service}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </dd>
               </div>
             ))
