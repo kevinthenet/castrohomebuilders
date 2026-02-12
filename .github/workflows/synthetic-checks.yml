@@ -1,8 +1,6 @@
 name: Synthetic checks
 run-name: ${{github.run_id}}-${{ github.sha }}
 on:
-  schedule:
-    - cron: '0 0 * * 0' # runs once a week at midnight Sunday
   workflow_dispatch:
 
 permissions:
