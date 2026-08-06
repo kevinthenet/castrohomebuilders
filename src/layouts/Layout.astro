@@ -1,16 +1,22 @@
 ---
 import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/layout/Footer.astro';
 import Header from '../components/layout/Header.astro';
+import Head from '../components/Head.astro';
 
 interface Props {
-  description: string;
+  description?: string;
+  image?: string | undefined;
   title: string;
 }
 
-const { description, title } = Astro.props;
+const {
+  description = 'Castro Home Builders is a general contracting company operating in the Bay Area with over 20 years of experience.',
+  image,
+  title,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -21,13 +27,13 @@ const { description, title } = Astro.props;
     <link rel="icon" id="favicon" type="image/png" href="/chb-favicon-light.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <Head description={description} image={image} title={title} />
     <script
       is:inline
       defer
       src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <title>{title}</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body
     class="bg-primary-50 text-primary-950 antialiased transition dark:bg-primary-950 dark:text-primary-200"

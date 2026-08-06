@@ -4,12 +4,16 @@ const team = [
     name: 'Victor Castro',
     image:
       'https://res.cloudinary.com/kevin-castro/image/upload/v1694376698/castrohomebuilders/team-1.jpg',
+    imageWidth: 244,
+    imageHeight: 343,
     job: 'General Contractor, Owner',
   },
   {
     name: 'Kevin Castro',
     image:
       'https://res.cloudinary.com/kevin-castro/image/upload/v1694376305/castrohomebuilders/team-2.jpg',
+    imageWidth: 1505,
+    imageHeight: 1772,
     job: 'Web Developer',
   },
 ];
@@ -24,7 +28,14 @@ const team = [
           team.map((item) => (
             <li class="rounded-3xl border border-primary-900/10 px-6 py-8 dark:border-primary-300/10">
               <div class="space-y-6">
-                <img class="mx-auto h-auto w-16 rounded-full" src={item.image} alt={item.name} />
+                <img
+                  class="mx-auto h-auto w-16 rounded-full"
+                  src={item.image}
+                  alt={item.name}
+                  width={item.imageWidth}
+                  height={item.imageHeight}
+                  loading="lazy"
+                />
                 <div class="text-center">
                   <h3 class="text-lg font-medium">{item.name}</h3>
                   <p class="text-base text-primary-950/70 dark:text-primary-200/70">{item.job}</p>
