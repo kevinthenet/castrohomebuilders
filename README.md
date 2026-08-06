@@ -50,14 +50,10 @@ All commands are run from the root of the project, from a terminal:
 
 ## Local development
 
-In order to get things working locally, you will need to create the following file:
+In order to get things working locally, you will need to setup the proper environment variables:
 
-> .env
->
 > ```bash
-> export CLOUDINARY_CLOUD_NAME='<cloud_name>'
-> export CLOUDINARY_API_KEY='<api_key>'
-> export CLOUDINARY_API_SECRET='<api_secret>'
+> cp .env.example .env
 > ```
 
 Then, before doing `pnpm start` run:
