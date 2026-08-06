@@ -20,7 +20,11 @@ export default defineConfig({
         'Castro Home Builders is a general contracting company operating in the Bay Area with over 20 years of experience',
       start_url: '/',
     }),
-    compress(),
+    compress({
+      // csso silently drops modern `@media (width>=...)` range syntax that
+      // Astro 7's build pipeline now emits, stripping all responsive styles.
+      CSS: false,
+    }),
     alpinejs(),
   ],
 });

@@ -1,10 +1,10 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["public/assets/*"],
     },
   },
-  "exclude": ["dist", "node_modules"],
+  "exclude": ["dist", "node_modules", "e2e", "playwright.config.ts"],
 }

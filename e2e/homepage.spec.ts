@@ -29,27 +29,25 @@ test('has "Learn More" and "Get an Estimate" buttons which lead to the about and
   const aboutButton = page.getByRole('link', { name: 'Learn More' });
   await expect(aboutButton).toBeVisible();
   await aboutButton.click();
-  expect(page.url()).toContain('about');
+  await expect(page).toHaveURL(/about/);
   await expect(page).toHaveTitle(/About/);
 
   // reset
-  page.goto('/');
+  await page.goto('/');
 
   const contactButton = page.getByRole('link', { name: 'Get an Estimate' });
   await expect(contactButton).toBeVisible();
   await contactButton.click();
-  expect(page.url()).toContain('contact');
+  await expect(page).toHaveURL(/contact/);
   await expect(page).toHaveTitle(/Contact/);
 });
 
 test('has a services section with collapsed category lists', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 2, name: 'Service' })).toBeVisible();
 
-  await expect(page.getByText('Foundations and Structural Work')).toBeVisible();
+  await expect(page.getByText('Structural Work')).toBeVisible();
 
-  await expect(
-    page.getByRole('listitem').filter({ hasText: 'Foundations and Excavations' })
-  ).toBeHidden();
+  await expect(page.getByRole('listitem').filter({ hasText: 'Rough Framing' })).toBeHidden();
 });
 
 test('has an about us section with a "Read More" button that leads to the about page', async ({
@@ -60,7 +58,7 @@ test('has an about us section with a "Read More" button that leads to the about 
   const btn = page.getByRole('link', { name: 'Read More' });
   await expect(btn).toBeVisible();
   await btn.click();
-  expect(page.url()).toContain('about');
+  await expect(page).toHaveURL(/about/);
   await expect(page).toHaveTitle(/About/);
 });
 
@@ -76,6 +74,6 @@ test('has a CTA with a button that leads to the contact page', async ({ page }) 
   const btn = page.getByRole('link', { name: 'Contact Us' });
   await expect(btn).toBeVisible();
   await btn.click();
-  expect(page.url()).toContain('contact');
+  await expect(page).toHaveURL(/contact/);
   await expect(page).toHaveTitle(/Contact/);
 });

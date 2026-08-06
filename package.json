@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "packageManager": "pnpm@8.7.4",
   "engines": {
-    "node": "^20.0.0"
+    "node": "^22.12.0"
   },
   "engineStrict": true,
   "scripts": {
@@ -21,14 +21,14 @@
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.13.0",
-    "@astrojs/alpinejs": "^0.4.9",
-    "@astrojs/check": "^0.2.0",
-    "@astrojs/sitemap": "^3.0.0",
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/alpinejs": "^1.0.0",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/tailwind": "^6.0.2",
     "@fontsource/inter": "^5.0.8",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.3",
-    "astro": "^3.0.8",
+    "astro": "^7.1.6",
     "astro-compress": "^2.0.15",
     "astro-robots-txt": "^0.5.0",
     "astro-webmanifest": "^1.0.0",
