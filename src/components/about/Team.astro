@@ -1,19 +1,17 @@
 ---
+import { Image } from 'astro:assets';
+import victorCastroImage from '../../assets/team/victor-castro.jpg';
+import kevinCastroImage from '../../assets/team/kevin-castro.jpg';
+
 const team = [
   {
     name: 'Victor Castro',
-    image:
-      'https://res.cloudinary.com/kevin-castro/image/upload/v1694376698/castrohomebuilders/team-1.jpg',
-    imageWidth: 244,
-    imageHeight: 343,
-    job: 'General Contractor, Owner',
+    image: victorCastroImage,
+    job: 'General Contractor & Owner',
   },
   {
     name: 'Kevin Castro',
-    image:
-      'https://res.cloudinary.com/kevin-castro/image/upload/v1694376305/castrohomebuilders/team-2.jpg',
-    imageWidth: 1505,
-    imageHeight: 1772,
+    image: kevinCastroImage,
     job: 'Web Developer',
   },
 ];
@@ -23,17 +21,18 @@ const team = [
   <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="sm:space-8 space-y-12">
       <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Meet our team</h2>
-      <ul role="list" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <ul
+        role="list"
+        class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+      >
         {
           team.map((item) => (
             <li class="rounded-3xl border border-primary-900/10 px-6 py-8 dark:border-primary-300/10">
               <div class="space-y-6">
-                <img
+                <Image
                   class="mx-auto h-16 w-16 rounded-full object-cover"
                   src={item.image}
                   alt={item.name}
-                  width={item.imageWidth}
-                  height={item.imageHeight}
                   loading="lazy"
                 />
                 <div class="text-center">

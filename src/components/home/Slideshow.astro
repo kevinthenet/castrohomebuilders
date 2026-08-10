@@ -38,23 +38,69 @@ type SearchResult = {
   rate_limit_remaining: number;
 };
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-  api_key: process.env.CLOUDINARY_API_KEY!,
-  api_secret: process.env.CLOUDINARY_API_SECRET!,
-  secure: true,
-});
+const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
 
-let photos = [];
+// Mirrors the aspect ratios typical of real project photos so the local
+// layout matches what production renders with actual Cloudinary images.
+const MOCK_PHOTO_SPECS = [
+  { width: 1600, height: 1067, color: '#8a9a8e' },
+  { width: 1600, height: 1200, color: '#a8998a' },
+  { width: 1600, height: 900, color: '#8a97a9' },
+  { width: 1600, height: 1067, color: '#9a8a94' },
+];
 
-const result: SearchResult = await cloudinary.search
-  .expression('folder:castrohomebuilders/projects/*')
-  .sort_by('height', 'desc')
-  .sort_by('width', 'desc')
-  .max_results(100)
-  .execute();
+function buildMockPhoto(index: number, spec: { width: number; height: number; color: string }): ResourceType {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${spec.width}" height="${spec.height}"><rect width="100%" height="100%" fill="${spec.color}"/><text x="50%" y="50%" font-family="sans-serif" font-size="48" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Mock Photo ${index + 1}</text></svg>`;
+  const secure_url = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+  return {
+    asset_id: `mock-${index}`,
+    public_id: `mock-${index}`,
+    folder: 'castrohomebuilders/projects/mock',
+    filename: `mock-${index}`,
+    format: 'svg',
+    version: 1,
+    resource_type: 'image',
+    type: 'upload',
+    created_at: '',
+    uploaded_at: '',
+    bytes: 0,
+    backup_bytes: 0,
+    width: spec.width,
+    height: spec.height,
+    aspect_ratio: spec.width / spec.height,
+    pixels: spec.width * spec.height,
+    url: secure_url,
+    secure_url,
+    status: 'active',
+    access_mode: 'public',
+    access_control: null,
+    etag: '',
+    created_by: null,
+    uploaded_by: null,
+  };
+}
 
-photos = result.resources;
+let photos: ResourceType[] = [];
+
+if (CLOUDINARY_CLOUD_NAME && CLOUDINARY_API_KEY && CLOUDINARY_API_SECRET) {
+  cloudinary.config({
+    cloud_name: CLOUDINARY_CLOUD_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET,
+    secure: true,
+  });
+
+  const result: SearchResult = await cloudinary.search
+    .expression('folder:castrohomebuilders/projects/*')
+    .sort_by('height', 'desc')
+    .sort_by('width', 'desc')
+    .max_results(100)
+    .execute();
+
+  photos = result.resources;
+} else {
+  photos = MOCK_PHOTO_SPECS.map((spec, index) => buildMockPhoto(index, spec));
+}
 
 const firstImage = photos[0];
 const nextFewImages = photos.slice(1, 4);
@@ -65,8 +111,10 @@ const nextFewImages = photos.slice(1, 4);
   {nextFewImages.map((photo) => <link rel="prefetch" as="image" href={photo.secure_url} />)}
 </head>
 
-<div
-  x-data={`
+{
+  photos.length > 0 && (
+    <div
+      x-data={`
   { expanded: false,
     prevImg: ${photos.length - 1},
     currentImg: 0,
@@ -104,7 +152,7 @@ const nextFewImages = photos.slice(1, 4);
             <img
               x-ref={`img${index}`}
               src={photo.secure_url}
-              class="absolute h-auto w-full cursor-pointer"
+              class="absolute h-full w-full cursor-pointer object-cover"
               alt="Hero slideshow picture"
               loading={index < 3 ? 'eager' : 'lazy'}
               x-data={`
@@ -280,4 +328,6 @@ const nextFewImages = photos.slice(1, 4);
       </button>
     </div>
   </div>
-</div>
+    </div>
+  )
+}
