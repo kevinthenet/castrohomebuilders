@@ -88,11 +88,11 @@ const serviceCategories = [
                     aria-expanded="false"
                     x-bind:aria-expanded="isOpen.toString()"
                   >
-                    <div class="flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200">
+                    <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
                       <span class="font-medium">{category.name}</span>
                       <span class="ml-6 flex h-7 items-center">
                         <svg
-                          class="h-6 w-6 rotate-0 transform text-primary-600 transition duration-150 ease-in-out dark:text-primary-400"
+                          class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-150 ease-in-out"
                           x-bind:class="{ '-rotate-180': isOpen, 'rotate-0': !isOpen }"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -117,8 +117,8 @@ const serviceCategories = [
                   x-transition:leave-start="opacity-100 max-h-96"
                   x-transition:leave-end="opacity-0 max-h-0"
                 >
-                  <div class="pb-6 pr-6">
-                    <ul class="list-none text-center text-base text-primary-950/70 dark:text-primary-200/70">
+                  <div class="pr-6 pb-6">
+                    <ul class="text-primary-950/70 dark:text-primary-200/70 list-none text-center text-base">
                       {category.services.map((service) => (
                         <li>{service}</li>
                       ))}

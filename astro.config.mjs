@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
 import webmanifest from 'astro-webmanifest';
 import compress from 'astro-compress';
 import alpinejs from '@astrojs/alpinejs';
@@ -9,10 +9,12 @@ import alpinejs from '@astrojs/alpinejs';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://castrohomebuilders.com',
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     robotsTxt(),
     sitemap(),
-    tailwind(),
     webmanifest({
       name: 'Castro Home Builders',
       icon: 'public/chb-favicon-light.png',

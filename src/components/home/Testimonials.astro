@@ -55,7 +55,7 @@ const testimonials = [
               <div class="flex flex-row gap-2">
                 {[...Array(5)].map(() => (
                   <svg
-                    class="h-6 w-6 text-primary-600 dark:text-primary-400"
+                    class="text-primary-600 dark:text-primary-400 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
@@ -76,7 +76,7 @@ const testimonials = [
                   <div class="text-base font-medium">{testimonial.name}</div>
                 </div>
               </figcaption>
-              <blockquote class="text-md text-center italic leading-loose text-primary-950/70 dark:text-primary-200/70">
+              <blockquote class="text-md text-primary-950/70 dark:text-primary-200/70 text-center leading-loose italic">
                 <p>{`“${testimonial.message}”`}</p>
               </blockquote>
             </figure>
