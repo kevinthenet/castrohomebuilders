@@ -1,0 +1,13 @@
+allowBuilds:
+  esbuild: true
+overrides:
+  ajv: ">=8.18.0"
+  picomatch@<2.3.2: ">=2.3.2"
+  picomatch@>=4.0.0 <4.0.4: ">=4.0.4"
+  yaml: ">=2.8.3"
+  lodash: ">=4.18.0"
+  postcss: ">=8.5.23"
+  fast-uri: ">=3.1.5"
+  sharp: ">=0.35.0"
+  nanoid: ">=3.3.18"
+  deepmerge-ts: ">=8.0.0"
