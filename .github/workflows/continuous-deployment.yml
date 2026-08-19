@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: 22
           path: .
-          package-manager: pnpm@9.5.0
+          package-manager: pnpm@11.10.0
         env:
           CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
