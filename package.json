@@ -14,8 +14,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
+    "lint": "prettier --write --config ./.prettierrc ./src",
     "lint:check": "prettier --check --config ./.prettierrc ./src",
-    "lint:fix": "prettier --write --config ./.prettierrc ./src",
     "synthetic:check": "playwright test",
     "synthetic:report": "playwright show-report"
   },

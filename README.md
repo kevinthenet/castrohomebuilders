@@ -46,6 +46,7 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm preview`    | Preview your build locally, before deploying |
 | `pnpm check`      | Compiles typescript and runs `astro check`   |
 | `pnpm astro ...`  | Run CLI commands like `astro add`            |
+| `pnpm lint`       | Run prettier lint fixes locally              |
 | `pnpm lint:check` | Run prettier lint checks locally             |
 
 ## Local development
