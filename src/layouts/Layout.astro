@@ -21,18 +21,42 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.dark }">
+<html
+  lang="en"
+  x-cloak
+  x-data
+  :class="{ 'dark': $store.theme.dark }"
+>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" id="favicon" type="image/png" href="/chb-favicon-light.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
-    <Head description={description} image={image} title={title} />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <link
+      rel="icon"
+      id="favicon"
+      type="image/png"
+      href="/chb-favicon-light.png"
+    />
+    <link
+      rel="manifest"
+      href="/sitemap-index.xml"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <Head
+      description={description}
+      image={image}
+      title={title}
+    />
     <script
       is:inline
       defer
-      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
     <title>{title}</title>
     <ClientRouter />
   </head>
@@ -51,7 +75,11 @@ const {
     </style>
 
     <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-K1WFXNTG8G"></script>
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K1WFXNTG8G"
+    ></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
